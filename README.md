@@ -8,5 +8,5 @@ Once the time period has elapsed, the user can remove their tokens again.
 
 ## How to deploy
 
-Compile the SimpleStaking.sol contract.
+Compile the [SimpleStaking.sol](https://github.com/second-state/simple-staking-smart-contract/blob/main/SimpleStaking.sol) contract.
 
