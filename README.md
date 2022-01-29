@@ -16,6 +16,8 @@ Call the setTimestamp function (as the contract owner) by passing in a value (in
 
 ## Test the contract (approval)
 
+**This approval step is actually performed by the DApp's User Interface (UI).** The DApp will first check the `approval` relationship of the Simple Staking Smart Contract's deployment address and the user (`msg.sender`) and then present the user with an offer to approve a MetaMask transaction (in the event that the `approve` function needs to be actioned before the DApp can successfully proceed with the task of transferring the suggested amount of tokens from the ERC20 contract to the Staking contract). Once this back and forth has occured, the DApp will know that it is possible to proceed and will get on with the staking (as outlined in the step following this one)
+
 Go to the ERC20 contract using wallet software of a user who holds ERC20 tokens.
 
 Perform the `approve` function by passing in the Simple Staking Smart Contract's deployment address. Also add an amount of tokens which you would like to approve the Simple Staking Smart Contract to spend on the user's behalf.
