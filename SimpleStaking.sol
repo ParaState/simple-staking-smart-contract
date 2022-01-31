@@ -41,7 +41,7 @@ contract SimpleStaking {
     /// @param _erc20_contract_address.
     constructor(IERC20 _erc20_contract_address) {
         // Set contract owner
-        owner = payable(msg.sender);
+        owner = msg.sender;
         // Timestamp values not set yet
         timestampSet = false;
         // Set the erc20 contract address which this timelock is deliberately paired to
