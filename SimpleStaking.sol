@@ -17,7 +17,7 @@ contract SimpleStaking {
     using SafeMath for uint256;
 
     // Contract owner
-    address payable public owner;
+    address public owner;
 
     // Timestamp related variables
     uint256 public initialTimestamp;
@@ -34,7 +34,6 @@ contract SimpleStaking {
     IERC20 public erc20Contract;
 
     // Events
-    event TokensDeposited(address from, uint256 amount);
     event tokensStaked(address from, uint256 amount);
     event TokensUnstaked(address to, uint256 amount);
 
@@ -90,28 +89,12 @@ contract SimpleStaking {
         _;
     }
 
-    // This is a faalback function whereby tokens can be sent to this contract
-    // TODO - remove this and see if ERC20 staking and unstaking still works perfectly (this should only concern network tokens, not ERC20)
-    receive() payable external {
-        contractBalance = contractBalance.add(msg.value);
-        emit TokensDeposited(msg.sender, msg.value);
-    }
-
     /// @dev Sets the initial timestamp and calculates minimum staking period in seconds i.e. 3600 = 1 hour
     /// @param _timePeriodInSeconds amount of seconds to add to the initial timestamp i.e. we are essemtially creating the minimum staking period here
     function setTimestamp(uint256 _timePeriodInSeconds) public onlyOwner timestampNotSet  {
         timestampSet = true;
         initialTimestamp = block.timestamp;
         timePeriod = initialTimestamp.add(_timePeriodInSeconds);
-    }
-
-    /// @dev Function to withdraw Eth in case Eth is accidently sent to this contract.
-    /// @param amount of network tokens to withdraw (in wei).
-    function withdrawEth(uint256 amount) public onlyOwner noReentrant{
-        require(amount <= contractBalance, "Insufficient funds");
-        contractBalance = contractBalance.sub(amount);
-        // Transfer the specified amount of Eth to the owner of this contract
-        owner.transfer(amount);
     }
 
     /// @dev Allows the contract owner to allocate official ERC20 tokens to each future recipient (only one at a time).
