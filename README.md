@@ -8,11 +8,11 @@ Once the time period has elapsed, the user can remove their tokens again.
 
 ## How to deploy
 
-Compile the [SimpleStaking.sol](https://github.com/second-state/simple-staking-smart-contract/blob/main/SimpleStaking.sol) contract.
+- Compile the [SimpleStaking.sol](https://github.com/second-state/simple-staking-smart-contract/blob/main/SimpleStaking.sol) contract.
 
-Deploy the contract by passing in the official ERC20 token's contract address as the one-and-only constructor parameter.
+- Deploy the contract by passing in the official ERC20 token's contract address as the one-and-only constructor parameter.
 
-Call the setTimestamp function (as the contract owner) by passing in a value (in seconds) for which you want the timelock period to be. The value which you pass in, will be added to the block.timestamp as at the time you called the setTimestamp function. For example, if you passed in 3600, then the timelock period would be 1 hour from now.
+- Call the `setTimestamp` function (as the contract owner) by passing in a value (in seconds) for which you want the timelock period to be. The value which you pass in, will be added to the block.timestamp as at the time you called the setTimestamp function. For example, if you passed in 3600, then the timelock period would be 1 hour from now.
 
 ## Test the contract (approval)
 
