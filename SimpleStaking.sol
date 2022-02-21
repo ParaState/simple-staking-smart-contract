@@ -100,7 +100,7 @@ contract SimpleStaking {
     /// @dev Allows the contract owner to allocate official ERC20 tokens to each future recipient (only one at a time).
     /// @param token, the official ERC20 token which this contract exclusively accepts.
     /// @param amount to allocate to recipient.
-    function stakeTokens(IERC20 token, uint256 amount) public timestampIsSet {
+    function stakeTokens(IERC20 token, uint256 amount) public timestampIsSet noReentrant {
         require(token == erc20Contract, "You are only allowed to stake the official erc20 token address which was passed into this contract's constructor");
         require(amount <= token.balanceOf(msg.sender), "Not enough STATE tokens in your wallet, please try lesser amount");
         token.safeTransferFrom(msg.sender, address(this), amount);
