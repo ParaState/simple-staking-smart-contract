@@ -102,6 +102,7 @@ contract SimpleStaking {
     /// @param amount to allocate to recipient.
     function stakeTokens(IERC20 token, uint256 amount) public timestampIsSet {
         require(token == erc20Contract, "You are only allowed to stake the official erc20 token address which was passed into this contract's constructor");
+        require(amount <= token.balanceOf(msg.sender), "Not enough STATE tokens in your wallet, please try lesser amount");
         token.safeTransferFrom(msg.sender, address(this), amount);
         balances[msg.sender] = balances[msg.sender].add(amount);
         emit tokensStaked(msg.sender, amount);
